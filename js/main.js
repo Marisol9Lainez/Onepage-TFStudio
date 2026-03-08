@@ -153,4 +153,107 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+
+    // -------------------------
+    // COTIZACIÓN INTERACTIVA
+    // -------------------------
+    const qProduct = document.getElementById('quote-product');
+    const qTechniqueRadios = Array.from(document.querySelectorAll('.quote-technique'));
+    const qSizesWrap = document.getElementById('quote-sizes');
+    const qSizeRadios = () => Array.from(document.querySelectorAll('input[name=\"quote-size\"]'));
+    const qQty = document.getElementById('quote-quantity');
+    const qDesignType = document.getElementById('quote-design-type');
+    const qDesignCode = document.getElementById('quote-design-code');
+    const qDesignCodeWrap = document.getElementById('design-code-wrap');
+    const qSummary = document.getElementById('quote-summary');
+    const qWhats = document.getElementById('quote-whatsapp');
+
+    function getTechnique() {
+        const r = qTechniqueRadios.find(x => x.checked);
+        return r ? r.value : 'DTF';
+    }
+    function getSize(product) {
+        if (!product || product === 'Taza' || product === 'Gorra') {
+            return 'Única';
+        }
+        const r = qSizeRadios().find(x => x.checked);
+        return r ? r.value : 'M';
+    }
+    function autoSelectTechnique(product) {
+        // Opcional: preseleccionar técnica según producto
+        let desired = 'DTF';
+        if (product === 'Taza') desired = 'Sublimación';
+        if (product === 'Camiseta' || product === 'Gorra') desired = 'DTF';
+        const t = qTechniqueRadios.find(x => x.value === desired);
+        if (t) t.checked = true;
+    }
+    function updateSizesVisibility(product) {
+        if (!qSizesWrap) return;
+        if (product === 'Taza' || product === 'Gorra') {
+            qSizesWrap.style.display = 'none';
+        } else {
+            qSizesWrap.style.display = '';
+        }
+    }
+    function buildQuoteMessage(product, technique, size, qty, designType, code) {
+        if (designType === 'personalizado') {
+            return [
+                'Hola TintaFina Studio, me interesa una cotización para un diseño personalizado. Detalles:',
+                '- Producto: ' + product,
+                '- Técnica: ' + technique,
+                '- Talla: ' + size,
+                '- Cantidad: ' + qty,
+                '- Diseño: PERSONALIZADO',
+                'Espero sus instrucciones para enviar mi archivo de diseño. Gracias.'
+            ].join('\n');
+        }
+        const codeLabel = code && code.trim() ? code.trim().toUpperCase() : 'TF-000';
+        return [
+            'Hola TintaFina Studio, me interesa una cotización. Aquí están los detalles:',
+            '- Producto: ' + product,
+            '- Técnica: ' + technique,
+            '- Talla: ' + size,
+            '- Cantidad: ' + qty,
+            '- Diseño: Catálogo ' + codeLabel,
+            'Gracias, espero su respuesta.'
+        ].join('\n');
+    }
+    function updateQuote() {
+        if (!qSummary || !qWhats) return;
+        const product = qProduct ? qProduct.value : 'Camiseta';
+        const technique = getTechnique();
+        updateSizesVisibility(product);
+        const size = getSize(product);
+        const qtyVal = qQty && qQty.value ? qQty.value : '1';
+        const dType = qDesignType ? qDesignType.value : 'catalogo';
+        const code = qDesignCode ? qDesignCode.value : '';
+
+        if (qDesignCodeWrap) {
+            qDesignCodeWrap.style.display = dType === 'catalogo' ? '' : 'none';
+        }
+
+        qSummary.textContent = 'Producto: ' + product + ' | Técnica: ' + technique + ' | Talla: ' + size + ' | Cantidad: ' + qtyVal + (dType === 'catalogo' ? (' | Diseño: ' + (code || 'TF-000')) : ' | Diseño: PERSONALIZADO');
+        const msg = buildQuoteMessage(product, technique, size, qtyVal, dType, code);
+        qWhats.setAttribute('href', 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg));
+        qWhats.setAttribute('target', '_blank');
+        qWhats.setAttribute('rel', 'noopener');
+    }
+    if (qProduct || qTechniqueRadios.length || qQty || qDesignType || qDesignCode || qSummary || qWhats) {
+        if (qProduct) {
+            qProduct.addEventListener('change', () => {
+                autoSelectTechnique(qProduct.value);
+                updateQuote();
+            });
+        }
+        qTechniqueRadios.forEach(r => r.addEventListener('change', updateQuote));
+        if (qSizesWrap) {
+            qSizesWrap.addEventListener('change', updateQuote);
+        }
+        if (qQty) qQty.addEventListener('input', updateQuote);
+        if (qDesignType) qDesignType.addEventListener('change', updateQuote);
+        if (qDesignCode) qDesignCode.addEventListener('input', updateQuote);
+        // Inicial
+        if (qProduct) autoSelectTechnique(qProduct.value);
+        updateQuote();
+    }
 });

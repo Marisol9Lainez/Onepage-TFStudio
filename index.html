@@ -93,25 +93,80 @@
                 <div class="two-columns">
                     <div><p>Elige un código o solicita tu diseño personalizado.</p></div>
                 </div>
-                <div class="portfolio-grid digital">
-                    <div class="portfolio-item reveal">
-                        <img class="card-img" src="img/placeholders/tuerca-portrait.svg" alt="Diseño TF-101">
+                
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="camiseta">Camisetas</button>
+                    <button class="filter-btn" data-filter="gorra">Gorras</button>
+                    <button class="filter-btn" data-filter="taza">Tazas</button>
+                </div>
+
+                <div class="portfolio-grid digital" id="portfolio-grid">
+                    <div class="portfolio-item reveal" data-category="camiseta">
+                        <div class="img-wrapper">
+                            <img class="card-img" src="img/placeholders/1c.png" alt="Diseño TF-101">
+                        </div>
                         <h3>TF-101</h3>
                         <div class="chips"><span class="chip digital">Camiseta</span><span class="chip digital">DTF</span></div>
-                        <a class="btn btn-digital" href="#cotizacion">Usar este código</a>
+                        <a class="btn btn-digital use-code-btn" href="#cotizacion" data-product="Camiseta" data-technique="DTF" data-code="TF-101">Usar este código</a>
                     </div>
-                    <div class="portfolio-item reveal">
-                        <img class="card-img" src="img/placeholders/tuerca-portrait.svg" alt="Diseño TF-202">
-                        <h3>TF-202</h3>
-                        <div class="chips"><span class="chip digital">Taza</span><span class="chip digital">Sublimación</span></div>
-                        <a class="btn btn-digital" href="#cotizacion">Usar este código</a>
+                    <div class="portfolio-item reveal" data-category="camiseta">
+                        <div class="img-wrapper">
+                            <img class="card-img" src="img/placeholders/2c.png" alt="Diseño TF-102">
+                        </div>
+                        <h3>TF-102</h3>
+                        <div class="chips"><span class="chip digital">Camiseta</span><span class="chip digital">DTF</span></div>
+                        <a class="btn btn-digital use-code-btn" href="#cotizacion" data-product="Camiseta" data-technique="DTF" data-code="TF-102">Usar este código</a>
                     </div>
-                    <div class="portfolio-item reveal">
-                        <img class="card-img" src="img/placeholders/tuerca-portrait.svg" alt="Diseño TF-303">
-                        <h3>TF-303</h3>
+                    <div class="portfolio-item reveal" data-category="camiseta">
+                        <div class="img-wrapper">
+                            <img class="card-img" src="img/placeholders/4c.jpg" alt="Diseño TF-103">
+                        </div>
+                        <h3>TF-103</h3>
+                        <div class="chips"><span class="chip digital">Camiseta</span><span class="chip digital">DTF</span></div>
+                        <a class="btn btn-digital use-code-btn" href="#cotizacion" data-product="Camiseta" data-technique="DTF" data-code="TF-103">Usar este código</a>
+                    </div>
+                    <div class="portfolio-item reveal" data-category="camiseta">
+                        <div class="img-wrapper">
+                            <img class="card-img" src="img/placeholders/3c.png" alt="Diseño TF-201">
+                        </div>
+                        <h3>TF-201</h3>
+                        <div class="chips"><span class="chip digital">Camiseta</span><span class="chip digital">Sublimación</span></div>
+                        <a class="btn btn-digital use-code-btn" href="#cotizacion" data-product="Camiseta" data-technique="Sublimación" data-code="TF-201">Usar este código</a>
+                    </div>
+                    <div class="portfolio-item reveal" data-category="taza">
+                        <div class="img-wrapper">
+                            <img class="card-img" src="img/placeholders/1t.jpeg" alt="Diseño TF-301">
+                        </div>
+                        <h3>TF-301</h3>
+                        <div class="chips"><span class="chip digital">Taza Magica</span><span class="chip digital">Sublimación</span></div>
+                        <a class="btn btn-digital use-code-btn" href="#cotizacion" data-product="Taza" data-technique="Sublimación" data-code="TF-301">Usar este código</a>
+                    </div>
+                    <div class="portfolio-item reveal" data-category="taza">
+                        <div class="img-wrapper">
+                            <img class="card-img" src="img/placeholders/2t.jpeg" alt="Diseño TF-302">
+                        </div>
+                        <h3>TF-302</h3>
+                        <div class="chips"><span class="chip digital">Taza Blanca</span><span class="chip digital">Sublimación</span></div>
+                        <a class="btn btn-digital use-code-btn" href="#cotizacion" data-product="Taza" data-technique="Sublimación" data-code="TF-302">Usar este código</a>
+                    </div>
+                    <div class="portfolio-item reveal" data-category="gorra">
+                        <div class="img-wrapper">
+                            <img class="card-img" src="img/placeholders/1g.jpg" alt="Diseño TF-401">
+                        </div>
+                        <h3>TF-401</h3>
                         <div class="chips"><span class="chip digital">Gorra</span><span class="chip digital">DTF</span></div>
-                        <a class="btn btn-digital" href="#cotizacion">Usar este código</a>
+                        <a class="btn btn-digital use-code-btn" href="#cotizacion" data-product="Gorra" data-technique="DTF" data-code="TF-401">Usar este código</a>
                     </div>
+                    <div class="portfolio-item reveal" data-category="gorra">
+                        <div class="img-wrapper">
+                            <img class="card-img" src="img/placeholders/2g.jpg" alt="Diseño TF-402">
+                        </div>
+                        <h3>TF-402</h3>
+                        <div class="chips"><span class="chip digital">Gorra</span><span class="chip digital">Sublimación</span></div>
+                        <a class="btn btn-digital use-code-btn" href="#cotizacion" data-product="Gorra" data-technique="Sublimación" data-code="TF-402">Usar este código</a>
+                    </div>
+                    <!-- Puedes agregar más items aquí sin saturar la vista gracias a los filtros -->
                 </div>
             </div>
         </section>
@@ -142,7 +197,7 @@
                             <label class="option-item"><input type="radio" name="quote-size" value="XXL"><span class="option-text">XXL</span></label>
                         </div>
                         <label>Cantidad
-                            <input id="quote-quantity" type="number" min="1" value="25" class="quantity-select">
+                            <input id="quote-quantity" type="number" min="1" value="1" class="quantity-select">
                         </label>
                         <label>Diseño
                             <select id="quote-design-type" class="quantity-select">
@@ -192,9 +247,9 @@
     <footer class="main-footer">
         <h3>Síguenos</h3>
         <div class="footer-socials">
-            <a class="footer-icon instagram" href="https://www.instagram.com/yesslain?utm_source=qr&igsh=bTBrazI1ZWtlZjB0" target="_blank" rel="noopener" aria-label="Instagram"><span class="icon-svg"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.5" fill="#fff" stroke="none"/></svg></span></a>
-            <a class="footer-icon facebook" href="https://www.facebook.com/yesslain" target="_blank" rel="noopener" aria-label="Facebook"><span class="icon-svg"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M13 20v-6h2l1-3h-3V9c0-.8.4-1 1-1h2V5h-2c-2.2 0-3.5 1.4-3.5 3.6V11H9v3h2v6h2z" stroke-width="0" fill="#fff"/></svg></span></a>
-            <a class="footer-icon tiktok" href="https://www.tiktok.com/@marisollainez1?_r=1&_t=ZM-91gcunteQAe" target="_blank" rel="noopener" aria-label="TikTok"><span class="icon-svg"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff"><path d="M14 3h3c.3 1.8 1.5 3.2 3 3.7v3c-1.6-.1-3.1-.6-4.5-1.5v6.3c0 3.6-2.3 5.8-5.3 5.8A5.1 5.1 0 018 16.7c0-2.8 2.1-4.8 4.8-4.9v3.2c-1 .1-1.6.7-1.6 1.7 0 1 .7 1.6 1.6 1.6 1.1 0 1.9-.8 1.9-2.4V3z"/></svg></span></a>
+            <a class="footer-icon instagram" href="" target="_blank" rel="noopener" aria-label="Instagram"><span class="icon-svg"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.5" fill="#fff" stroke="none"/></svg></span></a>
+            <a class="footer-icon facebook" href="https://www.facebook.com/people/TF-Studio/61582712424717/" target="_blank" rel="noopener" aria-label="Facebook"><span class="icon-svg"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M13 20v-6h2l1-3h-3V9c0-.8.4-1 1-1h2V5h-2c-2.2 0-3.5 1.4-3.5 3.6V11H9v3h2v6h2z" stroke-width="0" fill="#fff"/></svg></span></a>
+            <a class="footer-icon tiktok" href="https://www.tiktok.com/@tintafinastudiosv?_r=1&_t=ZS-95JafBTXIPA" target="_blank" rel="noopener" aria-label="TikTok"><span class="icon-svg"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff"><path d="M14 3h3c.3 1.8 1.5 3.2 3 3.7v3c-1.6-.1-3.1-.6-4.5-1.5v6.3c0 3.6-2.3 5.8-5.3 5.8A5.1 5.1 0 018 16.7c0-2.8 2.1-4.8 4.8-4.9v3.2c-1 .1-1.6.7-1.6 1.7 0 1 .7 1.6 1.6 1.6 1.1 0 1.9-.8 1.9-2.4V3z"/></svg></span></a>
             <!--<a class="footer-icon youtube" href="https://youtube.com/@yesslainstudio" target="_blank" rel="noopener" aria-label="YouTube"><span class="icon-svg"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="10" rx="3"/><polygon points="10,9 16,12 10,15" fill="#fff" stroke="none"/></svg></span></a> -->
         </div>
         <div class="footer-sep"></div>
@@ -204,6 +259,12 @@
 
     <a id="floating-whatsapp" class="floating-whatsapp" href="#" target="_blank" rel="noopener" aria-label="Chatear por WhatsApp"><span class="icon-svg"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M12 2a10 10 0 00-9.2 14.5L2 22l5.7-1.8A10 10 0 1012 2z" opacity="0.2"/><path fill="#fff" d="M17 15c-.4.2-2.4 1.1-2.8 1.1s-1.2-.1-2.4-.8c-1-.6-1.9-1.7-2.2-2-.2-.2-.5-.7-.5-1.3 0-.6.3-.9.5-1.1.1-.2.3-.3.5-.3h.4c.2 0 .3 0 .4.3l.6 1.3c.1.2.1.3 0 .5-.1.2-.2.3-.3.4l-.2.2c.3.6.8 1.1 1.4 1.4l.3.1c.1 0 .3 0 .4-.1l1.2-.6c.2-.1.4 0 .6.1l1.1.6c.2.2.3.5.2.8z"/></svg></span></a>
 
+    <!-- Modal para ver imágenes ampliadas -->
+    <div id="image-modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modal-img">
+        <div id="modal-caption"></div>
+    </div>
+
 </body>
 </html>
- 

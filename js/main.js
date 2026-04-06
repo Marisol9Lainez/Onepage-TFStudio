@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const WHATSAPP_NUMBER = '1234567890';
+    const WHATSAPP_NUMBER = '50379178282';
     document.querySelectorAll('.whatsapp-btn[data-message]').forEach(a => {
         const msg = a.getAttribute('data-message');
         a.setAttribute('href', 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg));
@@ -155,6 +155,77 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------
+    // FILTROS DEL CATÁLOGO
+    // -------------------------
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    // Configurar fondos desenfocados para el catálogo
+    function setupPortfolioBackgrounds() {
+        document.querySelectorAll('.img-wrapper').forEach(wrapper => {
+            const img = wrapper.querySelector('img');
+            if (img) {
+                wrapper.style.setProperty('--bg-image', `url(${img.src})`);
+            }
+        });
+    }
+    setupPortfolioBackgrounds();
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remover clase active de todos los botones
+            filterButtons.forEach(b => b.classList.remove('active'));
+            // Añadir clase active al botón clickeado
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter');
+
+            portfolioItems.forEach(item => {
+                const category = item.getAttribute('data-category');
+                if (filterValue === 'all' || filterValue === category) {
+                    item.classList.remove('hidden');
+                    // Pequeño delay para la animación de entrada
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, 50);
+                } else {
+                    item.classList.add('hidden');
+                    item.classList.remove('visible');
+                }
+            });
+        });
+    });
+
+    // -------------------------
+    // MODAL DE IMÁGENES
+    // -------------------------
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+    const captionText = document.getElementById('modal-caption');
+    const closeBtn = document.querySelector('.modal-close');
+
+    document.querySelectorAll('.card-img').forEach(img => {
+        img.onclick = function() {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+    });
+
+    if (closeBtn) {
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+    }
+
+    // Cerrar modal al hacer clic fuera de la imagen
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // -------------------------
     // COTIZACIÓN INTERACTIVA
     // -------------------------
     const qProduct = document.getElementById('quote-product');
@@ -167,6 +238,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const qDesignCodeWrap = document.getElementById('design-code-wrap');
     const qSummary = document.getElementById('quote-summary');
     const qWhats = document.getElementById('quote-whatsapp');
+
+    // -------------------------
+    // AUTO-COMPLETAR COTIZACIÓN DESDE CATÁLOGO
+    // -------------------------
+    const useCodeButtons = document.querySelectorAll('.use-code-btn');
+    useCodeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const product = btn.getAttribute('data-product');
+            const technique = btn.getAttribute('data-technique');
+            const code = btn.getAttribute('data-code');
+
+            // 1. Cambiar producto
+            if (qProduct) {
+                qProduct.value = product;
+            }
+
+            // 2. Cambiar técnica (radio buttons)
+            if (qTechniqueRadios) {
+                qTechniqueRadios.forEach(radio => {
+                    if (radio.value === technique) {
+                        radio.checked = true;
+                    }
+                });
+            }
+
+            // 3. Cambiar código de diseño
+            if (qDesignCode) {
+                qDesignCode.value = code;
+            }
+
+            // 4. Cambiar tipo de diseño a "catalogo"
+            if (qDesignType) {
+                qDesignType.value = 'catalogo';
+            }
+
+            // Actualizar la vista de la cotización
+            updateQuote();
+
+            // Desplazamiento suave (opcional si el href ya es #cotizacion)
+            const cotizacionSection = document.getElementById('cotizacion');
+            if (cotizacionSection) {
+                cotizacionSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
 
     function getTechnique() {
         const r = qTechniqueRadios.find(x => x.checked);

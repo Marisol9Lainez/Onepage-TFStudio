@@ -345,17 +345,49 @@ body[data-theme="dark"] .chip.fiesta { background: rgba(0,154,162,0.18); color: 
     padding: 1.5rem;
     box-sizing: border-box;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden; /* Para que el efecto de fondo no se salga */
 }
 .portfolio-item:hover { transform: translateY(-3px); box-shadow: 0 12px 28px var(--card-shadow); }
-.portfolio-item img {
+
+/* --- Contenedor para Imagen con Fondo Desenfocado --- */
+.img-wrapper {
+    position: relative;
     width: 100%;
-    height: auto;
-    aspect-ratio: 2 / 3; /* Proporción para mockups de teléfono */
-    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
     border-radius: 8px;
     margin-bottom: 1rem;
     border: 1px solid var(--card-border);
+    background-color: #000;
+    display: flex; /* Flexbox para centrar la imagen */
+    justify-content: center;
+    align-items: center;
 }
+
+/* La imagen de fondo desenfocada */
+.img-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    filter: blur(20px) brightness(0.6); /* Más desenfoque y un poco más oscuro */
+    transform: scale(1.2); /* Un poco más de escala para cubrir bordes del blur */
+    z-index: 0;
+}
+
+.portfolio-item img {
+    max-width: 100%; /* No exceder el contenedor */
+    max-height: 100%; /* No exceder el contenedor */
+    width: auto; /* Mantener proporción original */
+    height: auto; /* Mantener proporción original */
+    object-fit: contain; /* Garantía extra */
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
 .portfolio-item h3 {
     font-family: var(--fuente-titulos);
     color: var(--color-texto-principal);
@@ -517,8 +549,94 @@ body[data-theme="dark"] .quantity-select { background: #2d2d2d; border-color: #3
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* --- Filtros del Catálogo --- */
+.filter-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+.filter-btn {
+    background: transparent;
+    border: 2px solid var(--color-digital);
+    color: var(--color-digital);
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-family: var(--fuente-titulos);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+.filter-btn:hover, .filter-btn.active {
+    background: var(--color-digital);
+    color: var(--color-blanco);
+}
+.portfolio-item {
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.portfolio-item.hidden {
+    display: none;
+    opacity: 0;
+}
+
+/* --- Modal para Imágenes --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+    backdrop-filter: blur(5px);
+}
+.modal-content {
+    margin: auto;
+    display: block;
+    width: auto;
+    max-width: 90%;
+    max-height: 80vh; /* No exceder el 80% de la altura de pantalla */
+    object-fit: contain; /* Mostrar completa sin cortes */
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(255,255,255,0.1);
+}
+#modal-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    font-family: var(--fuente-titulos);
+    font-size: 1.2rem;
+}
+.modal-close {
+    position: absolute;
+    top: 30px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.modal-close:hover {
+    color: var(--color-digital);
+}
+.card-img {
+    cursor: zoom-in;
+}
+
 /* ------------------------- */
-/* 4. SECCIÓN CONTACTO */
+/* 4. SECCIÓN COTIZACIÓN */
 /* ------------------------- */
 #contacto {
     background: var(--bg-grad);
@@ -724,7 +842,7 @@ body[data-theme="dark"] .footer-sep { background: rgba(255,255,255,0.15); }
 .brand-divider-fiesta { background: linear-gradient(90deg, var(--color-fiesta), rgba(0,167,167,0.6)); }
 .service-card, .item-card, .portfolio-item { box-shadow: 0 14px 34px rgba(0,0,0,0.12); }
 .service-icon { width: 44px; height: 44px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: #fff; background: linear-gradient(135deg, var(--color-fiesta), var(--color-digital)); font-size: 1.4rem; }
-.card-img, .gallery-item img, .item-card img, .portfolio-item img { width: 100%; height: auto; border-radius: 14px; margin-bottom: 0.8rem; box-shadow: 0 10px 24px rgba(0,0,0,0.14); }
+.card-img, .gallery-item img, .item-card img { width: 100%; height: auto; border-radius: 14px; margin-bottom: 0.8rem; box-shadow: 0 10px 24px rgba(0,0,0,0.14); }
 
 /* Aros de color por sección (margen visual) */
 #servicios-negocios .card-img,

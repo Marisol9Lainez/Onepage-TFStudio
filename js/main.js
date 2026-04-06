@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return r ? r.value : 'DTF';
     }
     function getSize(product) {
-        if (!product || product === 'Taza' || product === 'Gorra') {
+        if (!product || product.includes('Taza') || product === 'Gorra') {
             return 'Única';
         }
         const r = qSizeRadios().find(x => x.checked);
@@ -298,14 +298,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function autoSelectTechnique(product) {
         // Opcional: preseleccionar técnica según producto
         let desired = 'DTF';
-        if (product === 'Taza') desired = 'Sublimación';
+        if (product.includes('Taza')) desired = 'Sublimación';
         if (product === 'Camiseta' || product === 'Gorra') desired = 'DTF';
         const t = qTechniqueRadios.find(x => x.value === desired);
         if (t) t.checked = true;
     }
     function updateSizesVisibility(product) {
         if (!qSizesWrap) return;
-        if (product === 'Taza' || product === 'Gorra') {
+        if (product.includes('Taza') || product === 'Gorra') {
             qSizesWrap.style.display = 'none';
         } else {
             qSizesWrap.style.display = '';

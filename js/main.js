@@ -231,7 +231,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const qProduct = document.getElementById('quote-product');
     const qTechniqueRadios = Array.from(document.querySelectorAll('.quote-technique'));
     const qSizesWrap = document.getElementById('quote-sizes');
+    const qOzWrap = document.getElementById('quote-oz');
     const qSizeRadios = () => Array.from(document.querySelectorAll('input[name=\"quote-size\"]'));
+    const qOzRadios = () => Array.from(document.querySelectorAll('input[name=\"quote-oz-val\"]'));
     const qQty = document.getElementById('quote-quantity');
     const qDesignType = document.getElementById('quote-design-type');
     const qDesignCode = document.getElementById('quote-design-code');
@@ -289,8 +291,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return r ? r.value : 'DTF';
     }
     function getSize(product) {
-        if (!product || product.includes('Taza') || product === 'Gorra') {
+        if (!product || product === 'Gorra') {
             return 'Única';
+        }
+        if (product.includes('Taza')) {
+            const r = qOzRadios().find(x => x.checked);
+            return (r ? r.value : '11') + ' Oz';
         }
         const r = qSizeRadios().find(x => x.checked);
         return r ? r.value : 'M';
@@ -304,11 +310,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (t) t.checked = true;
     }
     function updateSizesVisibility(product) {
-        if (!qSizesWrap) return;
-        if (product.includes('Taza') || product === 'Gorra') {
-            qSizesWrap.style.display = 'none';
-        } else {
+        if (!qSizesWrap || !qOzWrap) return;
+        
+        if (product === 'Camiseta') {
             qSizesWrap.style.display = '';
+            qOzWrap.style.display = 'none';
+        } else if (product.includes('Taza')) {
+            qSizesWrap.style.display = 'none';
+            qOzWrap.style.display = '';
+        } else {
+            // Gorra u otros
+            qSizesWrap.style.display = 'none';
+            qOzWrap.style.display = 'none';
         }
     }
     function buildQuoteMessage(product, technique, size, qty, designType, code) {
@@ -366,6 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
             qSizesWrap.addEventListener('change', updateQuote);
         }
         if (qQty) qQty.addEventListener('input', updateQuote);
+        if (qOzWrap) qOzWrap.addEventListener('change', updateQuote);
         if (qDesignType) qDesignType.addEventListener('change', updateQuote);
         if (qDesignCode) qDesignCode.addEventListener('input', updateQuote);
         // Inicial

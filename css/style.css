@@ -523,6 +523,30 @@ body[data-theme="dark"] .type-item { background: #2d2d2d; border-color: #3a3a3a;
 .option-icon svg { width: 16px; height: 16px; }
 .option-text { font-weight: 600; }
 
+.builder-controls label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--color-texto-secundario);
+    font-family: var(--fuente-titulos);
+}
+.label-small {
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    display: block;
+    text-transform: uppercase;
+}
+.options-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.options {
+    margin-bottom: 1.2rem;
+}
 .quantity-select { border: 1px solid var(--card-border); border-radius: 10px; padding: 6px 10px; background: var(--card-bg); box-shadow: 0 6px 16px var(--card-shadow); }
 
 body[data-theme="dark"] .option-item { background: #2d2d2d; border-color: #3a3a3a; }

@@ -191,11 +191,21 @@
                             <label class="option-item"><input type="radio" name="quote-technique" class="quote-technique" value="DTF" checked><span class="option-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" opacity="0.18"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg></span><span class="option-text">DTF</span></label>
                         </div>
                         <div class="options" id="quote-sizes">
-                            <label class="option-item"><input type="radio" name="quote-size" value="S" checked><span class="option-text">S</span></label>
-                            <label class="option-item"><input type="radio" name="quote-size" value="M"><span class="option-text">M</span></label>
-                            <label class="option-item"><input type="radio" name="quote-size" value="L"><span class="option-text">L</span></label>
-                            <label class="option-item"><input type="radio" name="quote-size" value="XL"><span class="option-text">XL</span></label>
-                            <label class="option-item"><input type="radio" name="quote-size" value="XXL"><span class="option-text">XXL</span></label>
+                            <span class="label-small">Talla</span>
+                            <div class="options-row">
+                                <label class="option-item"><input type="radio" name="quote-size" value="S" checked><span class="option-text">S</span></label>
+                                <label class="option-item"><input type="radio" name="quote-size" value="M"><span class="option-text">M</span></label>
+                                <label class="option-item"><input type="radio" name="quote-size" value="L"><span class="option-text">L</span></label>
+                                <label class="option-item"><input type="radio" name="quote-size" value="XL"><span class="option-text">XL</span></label>
+                                <label class="option-item"><input type="radio" name="quote-size" value="XXL"><span class="option-text">XXL</span></label>
+                            </div>
+                        </div>
+                        <div class="options" id="quote-oz" style="display: none;">
+                            <span class="label-small">Onzas</span>
+                            <div class="options-row">
+                                <label class="option-item"><input type="radio" name="quote-oz-val" value="11" checked><span class="option-text">11 Oz</span></label>
+                                <label class="option-item"><input type="radio" name="quote-oz-val" value="15"><span class="option-text">15 Oz</span></label>
+                            </div>
                         </div>
                         <label>Cantidad
                             <input id="quote-quantity" type="number" min="1" value="1" class="quantity-select">
